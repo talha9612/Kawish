@@ -82,7 +82,11 @@
 
     </style>
 </head>
+<<<<<<< HEAD
 <body style="display: block">
+=======
+<body>
+>>>>>>> d2933bfe11edecc6f91f67449d535b541f807e9b
 <!-- Left Panel -->
 @include('layouts.sidebar') 
 <!-- /#left-panel -->
@@ -98,7 +102,11 @@
         
     </div>
     <!-- /.content -->
+<<<<<<< HEAD
     <div class="clearfix"></div>
+=======
+    <!-- <div class="clearfix"></div> -->
+>>>>>>> d2933bfe11edecc6f91f67449d535b541f807e9b
     <!-- Footer -->
     <footer class="site-footer">
         <div class="footer-inner bg-white">

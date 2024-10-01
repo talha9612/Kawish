@@ -530,9 +530,7 @@
         </div><!-- /.col-lg-12 -->
     </div><!-- /.row -->
     <!--  /Traffic -->
-    <div class="clearfix"></div>
-   
-
+    <!-- <div class="clearfix"></div> -->
 </div>
 @endsection
 @section('bot')

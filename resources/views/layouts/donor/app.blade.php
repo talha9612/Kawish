@@ -72,6 +72,25 @@
             #cellPaiChart{
                 height: 160px;
             }
+            .site-wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            /* Full height of the viewport */
+        }
+
+        .content {
+            flex: 1;
+            /* This allows the content to grow and push the footer to the bottom */
+        }
+
+        .site-footer {
+            background-color: #f0f3f5;
+            padding: 20px;
+            width: 100%;
+            position: static;
+            bottom: 0;
+        }
     
         </style>
         @yield('top')
@@ -84,28 +103,26 @@
 <div id="right-panel" class="right-panel">
     <!-- Header-->
     @include('layouts.donor.header')
-    <!-- /#header -->
-    <!-- Content -->
-    <div class="content">
-       
-       @yield('content')
-        
-    </div>
     <!-- /.content -->
     <div class="clearfix"></div>
     <!-- Footer -->
-    <footer class="site-footer">
-        <div class="footer-inner bg-white">
-            <div class="row">
-                <div class="col-sm-6">
-                    Copyright &copy; 2018 
-                </div>
-                <div class="col-sm-6 text-right">
-                    Designed by <a href="https://starautomation.net">StarAutomation.net</a>
-                </div>
+    <div class="site-wrapper">
+            <div class="content">
+                @yield('content') <!-- This section will hold your page content -->
             </div>
+            <footer class="site-footer">
+                <div class="footer-inner bg-white">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            Copyright &copy; 2024
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            Designed by <a href="https://starautomation.net">StarAutomation.net</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
-    </footer>
     <!-- /.site-footer -->
 </div>
 <!-- /#right-panel -->

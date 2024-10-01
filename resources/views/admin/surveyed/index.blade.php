@@ -1,15 +1,18 @@
-@extends('layouts.admin.app')
+@extends('layouts.admin.second')
+
 @section('top')
-<link rel="stylesheet" href="{{asset('adminTheme/assets/css/lib/datatable/dataTables.bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{ asset('adminTheme/assets/css/lib/datatable/dataTables.bootstrap.min.css') }}">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css" rel="stylesheet">
 @endsection
+
 @section('content')
 @if(session('success'))
-    <div  id="session-message" class="alert alert-success">
+    <div id="session-message" class="alert alert-success">
         {{ session('success') }}
     </div>
 @endif
+
 <div class="animated fadeIn">
     <div class="row">
         <div class="col-md-12">
@@ -25,48 +28,41 @@
                         <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
-                                    {{-- <th>ID</th> --}}
                                     <th>SetUp Name</th>
                                     <th>Area</th>
                                     <th>Village Name</th>
                                     <th>Region</th>
                                     <th>Approximate House Family</th>
-                                    <th>approximate Residents</th>
+                                    <th>Approximate Residents</th>
                                     <th>Expected Cost</th>
                                     <th>Status</th>
                                     <th>Comment</th>
-                                    <!--<th>Images</th>-->
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($surveyed as $data)
                                 <tr>
-                                    {{-- <td>{{$data->id}}</td> --}}
-                                    <td>{{$data->setup}}</td>
-                                    <td>{{$data->area}}</td>
-                                    <td>{{$data->village_name}}</td>
-                                    <td>{{$data->region}}</td>
-                                    <td>{{$data->appro_h_f}}</td>
-                                    <td>{{$data->appro_residents}}</td>
-                                    <td>Rs {{number_format($data->expected_cost, 2)}}/-</td>
-                                    <td>{{($data->status==1)?"Surveyed":"Surveyed"}}</td>
-                                    <td>{{$data->remark}}</td>
-                                    <!--<td></td>-->
+                                    <td>{{ $data->setup }}</td>
+                                    <td>{{ $data->area }}</td>
+                                    <td>{{ $data->village_name }}</td>
+                                    <td>{{ $data->region }}</td>
+                                    <td>{{ $data->appro_h_f }}</td>
+                                    <td>{{ $data->appro_residents }}</td>
+                                    <td>Rs {{ number_format($data->expected_cost, 2) }}/-</td>
+                                    <td>{{ $data->status == 1 ? 'Surveyed' : 'Not Surveyed' }}</td>
+                                    <td>{{ $data->remark }}</td>
                                     <td>
                                         <div class="btn-group" role="group" aria-label="Action Buttons">
                                             <form method="POST" action="{{ url('/admin/project/add', $data->id) }}">
                                                 @csrf
-                                                <!-- Add input fields for the data to be updated -->
                                                 <button type="submit" class="btn btn-primary">Project</button>
                                             </form>
                                             <a href="#" class="btn btn-warning view-record" data-record-id="{{ $data->id }}" data-toggle="modal" data-target="#recordModal">
                                                 <i class="fa fa-eye" aria-hidden="true"></i>
                                             </a>
-                                            
                                             <form method="POST" action="{{ route('surveyed.edit', $data->id) }}">
                                                 @csrf
-                                                <!-- Add input fields for the data to be updated -->
                                                 <button type="submit" class="btn btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                                             </form>
                                             <form class="deleteForm" method="POST" action="{{ route('surveyed.delete', $data->id) }}">
@@ -85,24 +81,17 @@
             </div>
         </div>
     </div>
-</div><!-- .animated -->
-<div class="modal fade close" style="opacity: 5;font-size:1rem;font-weight: 300;" id="recordModal" tabindex="-1" role="dialog" aria-labelledby="recordModalLabel" aria-hidden="true">
+</div>
+
+<div class="modal fade close" id="recordModal" tabindex="-1" role="dialog" aria-labelledby="recordModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="recordModalLabel">Surveyed Details</h5>
-                {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button> --}}
             </div>
             <div class="modal-body">
-                <!-- Display record details here -->
                 <div id="recordDetails"></div>
             </div>
-            {{-- <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" id="confirmButton" class="btn btn-primary">Confirm</button>
-            </div> --}}
         </div>
     </div>
 </div>

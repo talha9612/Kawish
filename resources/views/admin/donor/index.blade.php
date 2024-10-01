@@ -1,12 +1,13 @@
-@extends('layouts.admin.app')
+@extends('layouts.admin.second')
+
 @section('top')
-<link rel="stylesheet" href="{{asset('adminTheme/assets/css/lib/datatable/dataTables.bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{ asset('adminTheme/assets/css/lib/datatable/dataTables.bootstrap.min.css') }}">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css" rel="stylesheet">
 @endsection
 @section('content')
 @if(session('success'))
-    <div  id="session-message" class="alert alert-success">
+    <div id="session-message" class="alert alert-success">
         {{ session('success') }}
     </div>
 @endif
@@ -39,25 +40,28 @@
                             <tbody>
                                 @foreach($donors as $data)
                                 <tr>
-                                    <td>{{$data->id}}</td>
+                                    <td>{{ $data->id }}</td>
                                     <td>Donor</td>
-                                    <td>{{$data->title}} {{$data->name}}</td>
-                                    <td>{{$data->f_h_name}}</td>
-                                    <td>{{$data->email}}</td>
-                                    <td>{{$data->phone}}</td>
-                                    <td>{{$data->city}}</td>
-                                    <td>{{$data->country}}</td>
+                                    <td>{{ $data->title }} {{ $data->name }}</td>
+                                    <td>{{ $data->f_h_name }}</td>
+                                    <td>{{ $data->email }}</td>
+                                    <td>{{ $data->phone }}</td>
+                                    <td>{{ $data->city }}</td>
+                                    <td>{{ $data->country }}</td>
                                     <td>
                                         <div class="btn-group" role="group" aria-label="Action Buttons">
                                             <form method="get" action="{{ route('donors.edit', $data->id) }}">
                                                 @csrf
-                                                <!-- Add input fields for the data to be updated -->
-                                                <button type="submit" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                </button>
                                             </form>
                                             <form class="deleteForm" method="post" action="{{ route('donors.destroy', $data->id) }}">
                                                 @csrf
                                                 @method('delete')
-                                                <button class="btn btn-danger deleteButton" type="button"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                <button class="btn btn-danger deleteButton" type="button">
+                                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                                </button>
                                             </form>
                                         </div>
                                     </td>
@@ -65,25 +69,28 @@
                                 @endforeach
                                 @foreach($users as $data)
                                 <tr>
-                                    <td>{{$data->id}}</td>
+                                    <td>{{ $data->id }}</td>
                                     <td>User</td>
-                                    <td>{{$data->name}}</td>
-                                    <td>{{$data->f_h_name}}</td>
-                                    <td>{{$data->email}}</td>
-                                    <td>{{$data->phone}}</td>
-                                    <td>{{$data->city}}</td>
-                                    <td>{{$data->country}}</td>
+                                    <td>{{ $data->name }}</td>
+                                    <td>{{ $data->f_h_name }}</td>
+                                    <td>{{ $data->email }}</td>
+                                    <td>{{ $data->phone }}</td>
+                                    <td>{{ $data->city }}</td>
+                                    <td>{{ $data->country }}</td>
                                     <td>
                                         <div class="btn-group" role="group" aria-label="Action Buttons">
                                             <form method="get" action="{{ route('users.edit', $data->id) }}">
                                                 @csrf
-                                                <!-- Add input fields for the data to be updated -->
-                                                <button type="submit" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                </button>
                                             </form>
                                             <form class="deleteForm" method="post" action="{{ route('users.destroy', $data->id) }}">
                                                 @csrf
                                                 @method('delete')
-                                                <button class="btn btn-danger deleteButton" type="button"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                <button class="btn btn-danger deleteButton" type="button">
+                                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                                </button>
                                             </form>
                                         </div>
                                     </td>
@@ -96,7 +103,8 @@
             </div>
         </div>
     </div>
-</div><!-- .animated -->
+</div>
+<!-- .animated -->
 
 @include('admin.donor.addform')
 @endsection

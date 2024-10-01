@@ -1,4 +1,4 @@
-@extends('layouts.admin.second')
+@extends('layouts.admin.app')
 
 @section('top')
 <link rel="stylesheet" href="{{ asset('adminTheme/assets/css/lib/datatable/dataTables.bootstrap.min.css') }}">

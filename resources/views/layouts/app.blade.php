@@ -111,7 +111,6 @@
         }
     </style>
 </head>
-
 <body style="display: block">
     <!-- Left Panel -->
     @include('layouts.sidebar')
@@ -124,6 +123,36 @@
         <div class="site-wrapper">
             <div class="content">
                 @yield('content') <!-- This section will hold your page content -->
+
+<body style="display: block">
+
+<body>
+<!-- Left Panel -->
+@include('layouts.sidebar') 
+<!-- /#left-panel -->
+<!-- Right Panel -->
+<div id="right-panel" class="right-panel">
+    <!-- Header-->
+    @include('layouts.header')
+    <!-- /#header -->
+    <!-- Content -->
+    <div class="content">
+       
+       @yield('content')
+        
+    </div>
+    <!-- /.content -->
+    <!-- <div class="clearfix"></div> -->
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner bg-white">
+            <div class="row">
+                <div class="col-sm-6">
+                    Copyright &copy; 2024 
+                </div>
+                <div class="col-sm-6 text-right">
+                    Designed by <a href="https://starautomation.net">StarAutomation.net</a>
+                </div>
             </div>
             <footer class="site-footer">
                 <div class="footer-inner bg-white">

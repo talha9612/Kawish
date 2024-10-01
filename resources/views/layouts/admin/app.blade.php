@@ -80,6 +80,7 @@
             #cellPaiChart{
                 height: 160px;
             }
+
     
         </style>
 </head>
@@ -99,7 +100,7 @@
         
     </div>
     <!-- /.content -->
-    <div class="clearfix"></div>
+    {{-- <div class="clearfix"></div> --}}
     <!-- Footer -->
     <footer class="site-footer">
         <div class="footer-inner bg-white">

@@ -109,8 +109,9 @@
             background-color: #f0f3f5;
             padding: 20px;
             width: 100%;
+            margin-top: auto;
+            /* Ensure it moves to the bottom */
             position: static;
-            bottom: 0;
         }
     </style>
 </head>

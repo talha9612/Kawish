@@ -14,7 +14,7 @@
                         <option value="donor">Donor</option>
                         <option value="user">User</option>
                     </select>
-                </div> 
+                </div>
                 <div class="form-group">
                     <label for="setup" class=" form-control-label">Select User</label>
                     <select name="select_user" id="select_user" class="form-control">
@@ -47,9 +47,10 @@
                     <label for="country" class=" form-control-label">Country</label>
                     <input type="text" name="country" id="country" placeholder="Country" class="form-control">
                 </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" id="confirmButton" class="btn btn-primary" data-dismiss="modal">Confirm</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="confirmButton" class="btn btn-primary" data-dismiss="modal">Confirm</button>
+                </div>
             </div>
         </div>
     </div>

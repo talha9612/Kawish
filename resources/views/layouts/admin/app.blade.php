@@ -49,7 +49,6 @@
             overflow-y: scroll;
             overflow-x: hidden !important;
         }
-<<<<<<< HEAD
 
         #weatherWidget .currentDesc {
             color: #ffffff !important;
@@ -114,45 +113,9 @@
             bottom: 0;
         }
     </style>
-=======
-            .traffic-chart {
-                min-height: 335px;
-            }
-            #flotPie1  {
-                height: 150px;
-            }
-            #flotPie1 td {
-                padding:3px;
-            }
-            #flotPie1 table {
-                top: 20px!important;
-                right: -10px!important;
-            }
-            .chart-container {
-                display: table;
-                min-width: 270px ;
-                text-align: left;
-                padding-top: 10px;
-                padding-bottom: 10px;
-            }
-            #flotLine5  {
-                 height: 105px;
-            }
-    
-            #flotBarChart {
-                height: 150px;
-            }
-            #cellPaiChart{
-                height: 160px;
-            }
-
-    
-        </style>
->>>>>>> 00d6e63fd167923cf17c25e384cf94dc42f6e368
 </head>
 
 <body style="display: block">
-<<<<<<< HEAD
     <!-- Left Panel -->
     @include('layouts.admin.sidebar')
     <!-- /#left-panel -->
@@ -165,34 +128,6 @@
         <div class="site-wrapper">
             <div class="content">
                 @yield('content')
-=======
-<!-- Left Panel -->
-@include('layouts.admin.sidebar') 
-<!-- /#left-panel -->
-<!-- Right Panel -->
-<div id="right-panel" class="right-panel">
-    <!-- Header-->
-    @include('layouts.admin.header')
-    <!-- /#header -->
-    <!-- Content -->
-    <div class="content">
-       
-       @yield('content')
-        
-    </div>
-    <!-- /.content -->
-    {{-- <div class="clearfix"></div> --}}
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="footer-inner bg-white">
-            <div class="row">
-                <div class="col-sm-6">
-                    Copyright &copy; 2024 
-                </div>
-                <div class="col-sm-6 text-right">
-                    Designed by <a href="https://starautomation.net">StarAutomation.net</a>
-                </div>
->>>>>>> 00d6e63fd167923cf17c25e384cf94dc42f6e368
             </div>
             <footer class="site-footer">
                 <div class="footer-inner bg-white">

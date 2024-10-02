@@ -573,28 +573,28 @@
                                 <div class="col-lg-3" id="per">
                                     <div class="progress-box progress-1">
                                         <h4 class="por-title">Punjab</h4>
-                                        <div class="por-txt" id="punjper">{{ $data['punjper'] ?? 0 }}%</div>
+                                        <div class="por-txt" id="punjabper">{{ $data['punjabper'] ?? 0 }}%</div>
                                         <div class="progress mb-2" style="height: 5px;">
                                             <div class="progress-bar bg-flat-color-1" role="progressbar"
-                                                 style="width: {{ $data['punjper'] ?? 0 }}%;" aria-valuenow="{{ $data['punjper'] ?? 0 }}"
+                                                 style="width: {{ $data['punjabper'] ?? 0 }}%;" aria-valuenow="{{ $data['punjabper'] ?? 0 }}"
                                                  aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
                                     <div class="progress-box progress-2">
                                         <h4 class="por-title">KPK</h4>
-                                        <div class="por-txt" id="kpkper">{{ $data['kpkper'] ?? 0 }}%</div>
+                                        <div class="por-txt" id="khyber-pakhtunkhwaper">{{ $data['khyber-pakhtunkhwaper'] ?? 0 }}%</div>
                                         <div class="progress mb-2" style="height: 5px;">
                                             <div class="progress-bar bg-flat-color-2" role="progressbar"
-                                                 style="width: {{ $data['kpkper'] ?? 0 }}%;" aria-valuenow="{{ $data['kpkper'] ?? 0 }}"
+                                                 style="width: {{ $data['khyber-pakhtunkhwaper'] ?? 0 }}%;" aria-valuenow="{{ $data['khyber-pakhtunkhwaper'] ?? 0 }}"
                                                  aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
                                     <div class="progress-box progress-3">
                                         <h4 class="por-title">Balochistan</h4>
-                                        <div class="por-txt" id="balper">{{ $data['balper'] ?? 0 }}%</div>
+                                        <div class="por-txt" id="balochistanper">{{ $data['balochistanper'] ?? 0 }}%</div>
                                         <div class="progress mb-2" style="height: 5px;">
                                             <div class="progress-bar bg-flat-color-3" role="progressbar"
-                                                 style="width: {{ $data['balper'] ?? 0 }}%;" aria-valuenow="{{ $data['balper'] ?? 0 }}"
+                                                 style="width: {{ $data['balochistanper'] ?? 0 }}%;" aria-valuenow="{{ $data['balochistanper'] ?? 0 }}"
                                                  aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
@@ -608,7 +608,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+        
                                 <!-- /.col-lg-3 -->
                             </div> <!-- /.row -->
                         </div>

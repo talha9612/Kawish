@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Donor\ProjectController as DonorProjectController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\mapcontroller;
@@ -78,9 +79,9 @@ Route::post('/register/donor', 'App\Http\Controllers\Auth\RegisterController@cre
 
 // For Admin
 Route::middleware('auth:admin')->group(function () {
-    // Route::view('/admin', 'admin.dashboard.index');
+    Route::view('/admin', 'admin.dashboard.index');
 
-    Route::get('/admin', [App\Http\Controllers\Admin\ProjectController::class, 'index']);
+    Route::get('/admin', [App\Http\Controllers\Admin\ProjectController::class, 'showPercentages']);
 
     // Surveyed Routes
     Route::get('/admin/surveyed', [App\Http\Controllers\Admin\SurveyedController::class, 'index']);
@@ -113,6 +114,7 @@ Route::middleware('auth:admin')->group(function () {
 
 Route::middleware('auth:donor')->group(function () {
     Route::view('/donor', 'donor.dashboard.index');
+    Route::get('/donor', [App\Http\Controllers\Donor\ProjectController::class, 'showPercentages']);
 
     Route::get('/donor/surveyed', [App\Http\Controllers\Donor\SurveyedController::class, 'index']);
     Route::get('/donor/get-surveyed-details/{id}', [App\Http\Controllers\Donor\SurveyedController::class, 'getSurveyedDetails']);
@@ -127,7 +129,8 @@ Route::middleware('auth:donor')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::view('/home', 'home');
-
+    Route::get('/home', [App\Http\Controllers\ProjectController::class, 'showPercentages']);
+    
     Route::get('/surveyed', [App\Http\Controllers\SurveyedController::class, 'index']);
     Route::get('/get-surveyed-details/{id}', [App\Http\Controllers\SurveyedController::class, 'getSurveyedDetails']);
     Route::post('/save-surveyed', [App\Http\Controllers\SurveyedController::class, 'SaveSurveyed']);

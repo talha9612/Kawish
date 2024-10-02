@@ -344,27 +344,31 @@ class ProjectController extends Controller
         $project->save();
         return redirect()->back()->with('success', 'Image Deleted Successfully.');
     }
-    // public function showPercentages()
-    // {
-    //     $regions = ['Punjab', 'Khyber-Pakhtunkhwa', 'Balochistan', 'Sindh'];
-    //     $data = [];
+    public function showPercentages()
+    {
+        // Define the regions
+        $regions = ['Punjab', 'Khyber-Pakhtunkhwa', 'Balochistan', 'Sindh'];
+        $data = [];
 
-    //     $totalHandPumpSetupsCount = $this->getTotalHandPumpSetupsCount();
-    //     $totalNewWellSetupsCount = $this->getTotalNewWellSetupsCount();
-    //     $totalRepairWellSetupsCount = $this->getTotalRepairWellSetupsCount();
-    //     $totalSum = $totalHandPumpSetupsCount + $totalNewWellSetupsCount + $totalRepairWellSetupsCount;
+        // Calculate total setups
+        $totalHandPumpSetupsCount = $this->getTotalHandPumpSetupsCount();
+        $totalNewWellSetupsCount = $this->getTotalNewWellSetupsCount();
+        $totalRepairWellSetupsCount = $this->getTotalRepairWellSetupsCount();
+        $totalSum = $totalHandPumpSetupsCount + $totalNewWellSetupsCount + $totalRepairWellSetupsCount;
 
-    //     foreach ($regions as $region) {
-    //         $handPumpCount = Project::where('region', $region)->where('setup', 'Hand Pump')->count();
-    //         $newWellCount = Project::where('region', $region)->where('setup', 'New Well')->count();
-    //         $repairWellCount = Project::where('region', $region)->where('setup', 'Repair Well')->count();
+        // Calculate percentages for each region
+        foreach ($regions as $region) {
+            $handPumpCount = Project::where('region', $region)->where('setup', 'Hand Pump')->count();
+            $newWellCount = Project::where('region', $region)->where('setup', 'New Well')->count();
+            $repairWellCount = Project::where('region', $region)->where('setup', 'Repair Well')->count();
 
-    //         $percentage = $totalSum > 0 ? ($handPumpCount + $newWellCount + $repairWellCount) / $totalSum * 100 : 0;
-    //         $data[strtolower($region) . 'per'] = round($percentage, 2); // Store with region name in lowercase
-    //     }
+            // Calculate percentage
+            $percentage = $totalSum > 0 ? ($handPumpCount + $newWellCount + $repairWellCount) / $totalSum * 100 : 0;
+            $data[strtolower($region) . 'per'] = round($percentage, 2); // Store with region name in lowercase
+        }
 
-    //     return view('admin.project.index', compact('data'));
-    // }
+        return view('admin.dashboard.index', compact('data'));
+    }
 
     // Example methods for total counts
     private function getTotalHandPumpSetupsCount()

@@ -339,48 +339,6 @@ class ProjectController extends Controller
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-    public function getTotalHandPumpSetupsCount()
-    {
-        // Calculate the total hand pump setups count
-        $totalHandPumpSetupsCount = Project::where('setup', 'Hand Pump')->count();
-
-        // Return the count
-        return $totalHandPumpSetupsCount;
-    }
-    public function getTotalNewWellSetupsCount()
-    {
-        // Calculate the total count of setups where setup is "New Well"
-        $totalNewWellSetupsCount = Project::where('setup', 'New Well')->count();
-
-        // Return the count
-        return $totalNewWellSetupsCount;
-    }
-
-    public function getTotalRepairWellSetupsCount()
-    {
-        // Calculate the total count of setups where setup is "Repair Well"
-        $totalRepairWellSetupsCount = Project::where('setup', 'Repair Well')->count();
-
-        // Return the count
-        return $totalRepairWellSetupsCount;
-    }
-
-
-
-
-
-
     public function getTotalCountsByRegion()
     {
         try {
@@ -568,6 +526,48 @@ class ProjectController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => 'Failed to fetch setup percentages'], 500);
         }
+    }
+
+    public function showPercentages()
+    {
+        // Define the regions
+        $regions = ['Punjab', 'Khyber-Pakhtunkhwa', 'Balochistan', 'Sindh'];
+        $data = [];
+
+        // Calculate total setups
+        $totalHandPumpSetupsCount = $this->getTotalHandPumpSetupsCount();
+        $totalNewWellSetupsCount = $this->getTotalNewWellSetupsCount();
+        $totalRepairWellSetupsCount = $this->getTotalRepairWellSetupsCount();
+        $totalSum = $totalHandPumpSetupsCount + $totalNewWellSetupsCount + $totalRepairWellSetupsCount;
+
+        // Calculate percentages for each region
+        foreach ($regions as $region) {
+            $handPumpCount = Project::where('region', $region)->where('setup', 'Hand Pump')->count();
+            $newWellCount = Project::where('region', $region)->where('setup', 'New Well')->count();
+            $repairWellCount = Project::where('region', $region)->where('setup', 'Repair Well')->count();
+
+            // Calculate percentage
+            $percentage = $totalSum > 0 ? ($handPumpCount + $newWellCount + $repairWellCount) / $totalSum * 100 : 0;
+            $data[strtolower($region) . 'per'] = round($percentage, 2); // Store with region name in lowercase
+        }
+
+        return view('home', compact('data'));
+    }
+
+    // Example methods for total counts
+    private function getTotalHandPumpSetupsCount()
+    {
+        return Project::where('setup', 'Hand Pump')->count();
+    }
+
+    private function getTotalNewWellSetupsCount()
+    {
+        return Project::where('setup', 'New Well')->count();
+    }
+
+    private function getTotalRepairWellSetupsCount()
+    {
+        return Project::where('setup', 'Repair Well')->count();
     }
     
 }

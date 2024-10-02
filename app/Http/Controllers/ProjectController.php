@@ -19,7 +19,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::get();
-        return view('user_project.index',compact('projects'));
+        return view('user_project.index', compact('projects'));
     }
 
     /**
@@ -27,10 +27,7 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        
-    }
+    public function create() {}
 
     /**
      * Store a newly created resource in storage.
@@ -63,22 +60,22 @@ class ProjectController extends Controller
             'custodian_phone' => 'required',
             // 'comments' => 'required',
         ]);
-      
+
         $today = Carbon::today()->toDateString();
         $newDate = date("Ymd", strtotime($request->input('tentative_start_date')));
         // echo $newDate;
-     
-        $project = Project::where('setup',$request->input('setup'))->where('region',$request->input('region'))->where('area',$request->input('area'))->where('village_name',$request->input('village_name'))->whereDate('tentative_start_date', $today)->first();
+
+        $project = Project::where('setup', $request->input('setup'))->where('region', $request->input('region'))->where('area', $request->input('area'))->where('village_name', $request->input('village_name'))->whereDate('tentative_start_date', $today)->first();
         // dd($project);
         // Given project code
         $projectCode = $project->project_id ?? null;
-        
+
         // Check if $projectCode is a string before proceeding
         if (is_string($projectCode)) {
             $one = rtrim($projectCode, '0123456789');
             $second = intval(substr($projectCode, -1));
             $project_name = $request->input('project_id') . $newDate;
-            if ($one == $project_name."-") {
+            if ($one == $project_name . "-") {
                 $second++;
             }
         } else {
@@ -112,11 +109,11 @@ class ProjectController extends Controller
         $model->custodian_name = $request->input('custodian_name');
         $model->custodian_phone = $request->input('custodian_phone');
         $model->comments = $request->input('comments');
-        
+
         if ($request->hasFile('current_working')) {
             $images = [];
             foreach ($request->file('current_working') as $image) {
-                $imageName = time().rand() . '_' . $image->getClientOriginalName(); // Generate a unique name
+                $imageName = time() . rand() . '_' . $image->getClientOriginalName(); // Generate a unique name
                 $imagePath = '/projects/current_working/' . $imageName;
                 // Save the image to the public/images directory
                 $image->move(public_path('/projects/current_working/'), $imageName);
@@ -128,7 +125,7 @@ class ProjectController extends Controller
         if ($request->hasFile('snap_working')) {
             $images = [];
             foreach ($request->file('snap_working') as $image) {
-                $imageName = time().rand() . '_' . $image->getClientOriginalName(); // Generate a unique name
+                $imageName = time() . rand() . '_' . $image->getClientOriginalName(); // Generate a unique name
                 $imagePath = '/projects/snap_working/' . $imageName;
                 // Save the image to the public/images directory
                 $image->move(public_path('/projects/snap_working/'), $imageName);
@@ -188,12 +185,14 @@ class ProjectController extends Controller
     {
         //
     }
-    public function add($id){
+    public function add($id)
+    {
         $survey = Surveyed::findOrFail($id);
         $donors = Donor::all();
-        return view('user_project.add',compact('survey','donors'));
+        return view('user_project.add', compact('survey', 'donors'));
     }
-    public function getProjectDetails($id){
+    public function getProjectDetails($id)
+    {
         $records = Project::select(
             'setup',
             'project_id',
@@ -223,13 +222,9 @@ class ProjectController extends Controller
         )->findOrFail($id);
         $datetimeString = $records->created_at;
         $date = date("Y-m-d", strtotime($datetimeString));
-        $records->created_at =  $date; 
+        $records->created_at =  $date;
         return view('user_project.view', compact('records'));
     }
-
-
-
-
 
 
     public function punjper()
@@ -237,14 +232,14 @@ class ProjectController extends Controller
         $totalHandPumpSetupsCount = $this->getTotalHandPumpSetupsCount();
         $totalNewWellSetupsCount = $this->getTotalNewWellSetupsCount();
         $totalRepairWellSetupsCount = $this->getTotalRepairWellSetupsCount();
-    
+
         // Calculate the total sum
         $totalSum = $totalHandPumpSetupsCount + $totalNewWellSetupsCount + $totalRepairWellSetupsCount;
-    
+
         $HandPumpCount = Project::where('region', 'Punjab')->where('setup', 'Hand Pump')->count();
         $NewWellCount = Project::where('region', 'Punjab')->where('setup', 'New Well')->count();
         $RepairWellCount = Project::where('region', 'Punjab')->where('setup', 'Repair Well')->count();
-    
+
         // Calculate percentage for the current region
         $percentage = ($HandPumpCount + $NewWellCount + $RepairWellCount) / $totalSum * 100;
         return $percentage;
@@ -254,14 +249,14 @@ class ProjectController extends Controller
         $totalHandPumpSetupsCount = $this->getTotalHandPumpSetupsCount();
         $totalNewWellSetupsCount = $this->getTotalNewWellSetupsCount();
         $totalRepairWellSetupsCount = $this->getTotalRepairWellSetupsCount();
-    
+
         // Calculate the total sum
         $totalSum = $totalHandPumpSetupsCount + $totalNewWellSetupsCount + $totalRepairWellSetupsCount;
-    
+
         $HandPumpCount = Project::where('region', 'Khyber-Pakhtunkhwa')->where('setup', 'Hand Pump')->count();
         $NewWellCount = Project::where('region', 'Khyber-Pakhtunkhwa')->where('setup', 'New Well')->count();
         $RepairWellCount = Project::where('region', 'Khyber-Pakhtunkhwa')->where('setup', 'Repair Well')->count();
-    
+
         // Calculate percentage for the current region
         $percentage = ($HandPumpCount + $NewWellCount + $RepairWellCount) / $totalSum * 100;
         return $percentage;
@@ -271,14 +266,14 @@ class ProjectController extends Controller
         $totalHandPumpSetupsCount = $this->getTotalHandPumpSetupsCount();
         $totalNewWellSetupsCount = $this->getTotalNewWellSetupsCount();
         $totalRepairWellSetupsCount = $this->getTotalRepairWellSetupsCount();
-    
+
         // Calculate the total sum
         $totalSum = $totalHandPumpSetupsCount + $totalNewWellSetupsCount + $totalRepairWellSetupsCount;
-    
+
         $HandPumpCount = Project::where('region', 'Balochistan')->where('setup', 'Hand Pump')->count();
         $NewWellCount = Project::where('region', 'Balochistan')->where('setup', 'New Well')->count();
         $RepairWellCount = Project::where('region', 'Balochistan')->where('setup', 'Repair Well')->count();
-    
+
         // Calculate percentage for the current region
         $percentage = ($HandPumpCount + $NewWellCount + $RepairWellCount) / $totalSum * 100;
         return $percentage;
@@ -288,21 +283,18 @@ class ProjectController extends Controller
         $totalHandPumpSetupsCount = $this->getTotalHandPumpSetupsCount();
         $totalNewWellSetupsCount = $this->getTotalNewWellSetupsCount();
         $totalRepairWellSetupsCount = $this->getTotalRepairWellSetupsCount();
-    
+
         // Calculate the total sum
         $totalSum = $totalHandPumpSetupsCount + $totalNewWellSetupsCount + $totalRepairWellSetupsCount;
-    
+
         $HandPumpCount = Project::where('region', 'Sindh')->where('setup', 'Hand Pump')->count();
         $NewWellCount = Project::where('region', 'Sindh')->where('setup', 'New Well')->count();
         $RepairWellCount = Project::where('region', 'Sindh')->where('setup', 'Repair Well')->count();
-    
+
         // Calculate percentage for the current region
         $percentage = ($HandPumpCount + $NewWellCount + $RepairWellCount) / $totalSum * 100;
         return $percentage;
     }
-    
-    
-
 
 
     public function headCount()
@@ -356,7 +348,7 @@ class ProjectController extends Controller
 
 
 
-    
+
 
     public function getTotalHandPumpSetupsCount()
     {
@@ -444,7 +436,7 @@ class ProjectController extends Controller
             return response()->json(['error' => 'Failed to fetch setup counts'], 500);
         }
     }
-    
+
 
 
     public function getAllPunjabSetupCounts()
@@ -453,19 +445,19 @@ class ProjectController extends Controller
             // Fetch the counts of hand pumps, new wells, and repair wells for all areas in Punjab
             $areas = Project::where('region', 'Punjab')->distinct()->pluck('area')->toArray();
             $data = [];
-    
+
             foreach ($areas as $area) {
                 $handPumpCount = Project::where('region', 'Punjab')->where('area', $area)->where('setup', 'Hand Pump')->count();
                 $newWellCount = Project::where('region', 'Punjab')->where('area', $area)->where('setup', 'New Well')->count();
                 $repairWellCount = Project::where('region', 'Punjab')->where('area', $area)->where('setup', 'Repair Well')->count();
-    
+
                 $data[$area] = [
                     'handPumpCount' => $handPumpCount,
                     'newWellCount' => $newWellCount,
                     'repairWellCount' => $repairWellCount,
                 ];
             }
-    
+
             // Return the setup counts as JSON
             return response()->json($data);
         } catch (\Exception $e) {
@@ -473,26 +465,26 @@ class ProjectController extends Controller
             return response()->json(['error' => 'Failed to fetch setup counts'], 500);
         }
     }
-   
+
     public function getAllkpkSetupCounts()
     {
         try {
             // Fetch the counts of hand pumps, new wells, and repair wells for all areas in Punjab
             $areas = Project::where('region', 'Khyber-Pakhtunkhwa')->distinct()->pluck('area')->toArray();
             $data = [];
-    
+
             foreach ($areas as $area) {
                 $handPumpCount = Project::where('region', 'Khyber-Pakhtunkhwa')->where('area', $area)->where('setup', 'Hand Pump')->count();
                 $newWellCount = Project::where('region', 'Khyber-Pakhtunkhwa')->where('area', $area)->where('setup', 'New Well')->count();
                 $repairWellCount = Project::where('region', 'Khyber-Pakhtunkhwa')->where('area', $area)->where('setup', 'Repair Well')->count();
-    
+
                 $data[$area] = [
                     'handPumpCount' => $handPumpCount,
                     'newWellCount' => $newWellCount,
                     'repairWellCount' => $repairWellCount,
                 ];
             }
-    
+
             // Return the setup counts as JSON
             return response()->json($data);
         } catch (\Exception $e) {
@@ -506,19 +498,19 @@ class ProjectController extends Controller
             // Fetch the counts of hand pumps, new wells, and repair wells for all areas in Punjab
             $areas = Project::where('region', 'Sindh')->distinct()->pluck('area')->toArray();
             $data = [];
-    
+
             foreach ($areas as $area) {
                 $handPumpCount = Project::where('region', 'Sindh')->where('area', $area)->where('setup', 'Hand Pump')->count();
                 $newWellCount = Project::where('region', 'Sindh')->where('area', $area)->where('setup', 'New Well')->count();
                 $repairWellCount = Project::where('region', 'Sindh')->where('area', $area)->where('setup', 'Repair Well')->count();
-    
+
                 $data[$area] = [
                     'handPumpCount' => $handPumpCount,
                     'newWellCount' => $newWellCount,
                     'repairWellCount' => $repairWellCount,
                 ];
             }
-    
+
             // Return the setup counts as JSON
             return response()->json($data);
         } catch (\Exception $e) {
@@ -532,36 +524,50 @@ class ProjectController extends Controller
             // Fetch the counts of hand pumps, new wells, and repair wells for all areas in Punjab
             $areas = Project::where('region', 'Balochistan')->distinct()->pluck('area')->toArray();
             $data = [];
-    
+
             foreach ($areas as $area) {
                 $handPumpCount = Project::where('region', 'Balochistan')->where('area', $area)->where('setup', 'Hand Pump')->count();
                 $newWellCount = Project::where('region', 'Balochistan')->where('area', $area)->where('setup', 'New Well')->count();
                 $repairWellCount = Project::where('region', 'Balochistan')->where('area', $area)->where('setup', 'Repair Well')->count();
-    
+
                 $data[$area] = [
                     'handPumpCount' => $handPumpCount,
                     'newWellCount' => $newWellCount,
                     'repairWellCount' => $repairWellCount,
                 ];
             }
-    
+
             // Return the setup counts as JSON
             return response()->json($data);
         } catch (\Exception $e) {
-            // Handle any exceptions and return an error response
             return response()->json(['error' => 'Failed to fetch setup counts'], 500);
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
+    public function getSetupPercentagesByRegion($region)
+    {
+        try {
+            $areas = Project::where('region', ucfirst($region))->distinct()->pluck('area')->toArray();
+            $data = [];
+    
+            foreach ($areas as $area) {
+                $handPumpCount = Project::where('region', ucfirst($region))->where('area', $area)->where('setup', 'Hand Pump')->count();
+                $newWellCount = Project::where('region', ucfirst($region))->where('area', $area)->where('setup', 'New Well')->count();
+                $repairWellCount = Project::where('region', ucfirst($region))->where('area', $area)->where('setup', 'Repair Well')->count();
+    
+                $totalSetups = $handPumpCount + $newWellCount + $repairWellCount;
+    
+                $data[$area] = [
+                    'handPumpPercentage' => $totalSetups > 0 ? ($handPumpCount / $totalSetups) * 100 : 0,
+                    'newWellPercentage' => $totalSetups > 0 ? ($newWellCount / $totalSetups) * 100 : 0,
+                    'repairWellPercentage' => $totalSetups > 0 ? ($repairWellCount / $totalSetups) * 100 : 0,
+                ];
+            }
+    
+            return response()->json($data);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to fetch setup percentages'], 500);
+        }
+    }
+    
 }

@@ -14,8 +14,28 @@ class ProjectController extends Controller
     public function index(){
         $donors = Donor::all();
         $projects = Project::all();
-        return view('admin.project.index',compact('donors','projects'));
+        $regions = ['Punjab', 'Khyber-Pakhtunkhwa', 'Balochistan', 'Sindh'];
+        $data = [];
+
+        // Calculate total setups
+        $totalHandPumpSetupsCount = $this->getTotalHandPumpSetupsCount();
+        $totalNewWellSetupsCount = $this->getTotalNewWellSetupsCount();
+        $totalRepairWellSetupsCount = $this->getTotalRepairWellSetupsCount();
+        $totalSum = $totalHandPumpSetupsCount + $totalNewWellSetupsCount + $totalRepairWellSetupsCount;
+
+        // Calculate percentages for each region
+        foreach ($regions as $region) {
+            $handPumpCount = Project::where('region', $region)->where('setup', 'Hand Pump')->count();
+            $newWellCount = Project::where('region', $region)->where('setup', 'New Well')->count();
+            $repairWellCount = Project::where('region', $region)->where('setup', 'Repair Well')->count();
+
+            // Calculate percentage
+            $percentage = $totalSum > 0 ? ($handPumpCount + $newWellCount + $repairWellCount) / $totalSum * 100 : 0;
+            $data[strtolower($region) . 'per'] = round($percentage, 2); // Store with region name in lowercase
+             dd($data);
+        return view('admin.dashboard.index',compact('donors','projects', 'data'));
     }
+}
     public function add($id){
         $survey = Surveyed::findOrFail($id);
         $donors = Donor::all();
@@ -324,4 +344,42 @@ class ProjectController extends Controller
         $project->save();
         return redirect()->back()->with('success', 'Image Deleted Successfully.');
     }
+    // public function showPercentages()
+    // {
+    //     $regions = ['Punjab', 'Khyber-Pakhtunkhwa', 'Balochistan', 'Sindh'];
+    //     $data = [];
+
+    //     $totalHandPumpSetupsCount = $this->getTotalHandPumpSetupsCount();
+    //     $totalNewWellSetupsCount = $this->getTotalNewWellSetupsCount();
+    //     $totalRepairWellSetupsCount = $this->getTotalRepairWellSetupsCount();
+    //     $totalSum = $totalHandPumpSetupsCount + $totalNewWellSetupsCount + $totalRepairWellSetupsCount;
+
+    //     foreach ($regions as $region) {
+    //         $handPumpCount = Project::where('region', $region)->where('setup', 'Hand Pump')->count();
+    //         $newWellCount = Project::where('region', $region)->where('setup', 'New Well')->count();
+    //         $repairWellCount = Project::where('region', $region)->where('setup', 'Repair Well')->count();
+
+    //         $percentage = $totalSum > 0 ? ($handPumpCount + $newWellCount + $repairWellCount) / $totalSum * 100 : 0;
+    //         $data[strtolower($region) . 'per'] = round($percentage, 2); // Store with region name in lowercase
+    //     }
+
+    //     return view('admin.project.index', compact('data'));
+    // }
+
+    // Example methods for total counts
+    private function getTotalHandPumpSetupsCount()
+    {
+        return Project::where('setup', 'Hand Pump')->count();
+    }
+
+    private function getTotalNewWellSetupsCount()
+    {
+        return Project::where('setup', 'New Well')->count();
+    }
+
+    private function getTotalRepairWellSetupsCount()
+    {
+        return Project::where('setup', 'Repair Well')->count();
+    }
 }
+

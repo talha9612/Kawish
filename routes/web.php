@@ -55,7 +55,6 @@ Route::get('/balper', [ProjectController::class, 'balper']);
 Route::get('/sindhper', [ProjectController::class, 'sindhper']);
 
 
-
 // Route::get('/get-punjab-setup-count', [mapcontroller::class,'getPunjabSetupCounts']);
 // Route::get('/get-sindh-setup-count', [mapcontroller::class,'getsindhSetupCounts']);
 // Route::get('/get-bal-setup-count', [mapcontroller::class,'getbalSetupCounts']);
@@ -79,7 +78,9 @@ Route::post('/register/donor', 'App\Http\Controllers\Auth\RegisterController@cre
 
 // For Admin
 Route::middleware('auth:admin')->group(function () {
-    Route::view('/admin', 'admin.dashboard.index');
+    // Route::view('/admin', 'admin.dashboard.index');
+
+    Route::get('/admin', [App\Http\Controllers\Admin\ProjectController::class, 'index']);
 
     // Surveyed Routes
     Route::get('/admin/surveyed', [App\Http\Controllers\Admin\SurveyedController::class, 'index']);

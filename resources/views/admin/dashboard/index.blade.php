@@ -32,7 +32,7 @@
             font-size: 12px;
             padding: 0 5px;
             /* margin-left: 22%;
-            margin-top: 10%; */
+                margin-top: 10%; */
             /* top: 50% !important; */
         }
 
@@ -345,8 +345,6 @@
     <div class="animated fadeIn">
         <!-- Widgets  -->
         <div class="row">
-
-
             <div class="col-lg-3 col-md-6">
                 <div class="card">
                     <div class="card-body">
@@ -365,7 +363,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-lg-3 col-md-6">
                 <div class="card">
                     <div class="card-body">
@@ -384,7 +381,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-lg-3 col-md-6">
                 <div class="card">
                     <div class="card-body">
@@ -403,7 +399,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-lg-3 col-md-6">
                 <div class="card">
                     <div class="card-body">
@@ -437,7 +432,6 @@
                                                 <div class="map-container col-md-9" id="mapContainer">
                                                     <!-- Background image -->
                                                     <div class="map-background"></div>
-
                                                     <!-- Button with hidden text -->
                                                     <button class="btn" id="punjabBtn"></button>
                                                     <button class="btnkpk" id="kpkBtn">KPK</button>
@@ -455,7 +449,6 @@
                                                         <option value="Sindh">Sindh</option>
                                                         <option value="Balochistan">Balochistan</option>
                                                     </select>
-
                                                     <table class="table" id="uppertable">
                                                         <thead>
                                                             <tr>
@@ -498,7 +491,6 @@
                                                                 <td id="total_repair_well_count"></td>
                                                             </tr>
                                                         </tbody>
-
                                                     </table>
                                                     <div class="displaypunjab" style="display:none" id="down">
                                                         <div class="card-footer col-md-6">
@@ -572,7 +564,6 @@
                                                             </table>
                                                         </div>
                                                     </div>
-
                                                     <!-- <a href="#" class="return"><button>Main</button></a> -->
                                                 </div>
                                             </div>
@@ -582,34 +573,43 @@
                                 <div class="col-lg-3" id="per">
                                     <div class="progress-box progress-1">
                                         <h4 class="por-title">Punjab</h4>
-                                        <div class="por-txt" id="punjper"></div>
+                                        <div class="por-txt" id="punjper">{{ $data['punjper'] ?? 0 }}%</div>
                                         <div class="progress mb-2" style="height: 5px;">
-                                            <div class="progress-bar bg-flat-color-1" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar bg-flat-color-1" role="progressbar"
+                                                 style="width: {{ $data['punjper'] ?? 0 }}%;" aria-valuenow="{{ $data['punjper'] ?? 0 }}"
+                                                 aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
                                     <div class="progress-box progress-2">
                                         <h4 class="por-title">KPK</h4>
-                                        <div class="por-txt" id="kpkper"></div>
+                                        <div class="por-txt" id="kpkper">{{ $data['kpkper'] ?? 0 }}%</div>
                                         <div class="progress mb-2" style="height: 5px;">
-                                            <div class="progress-bar bg-flat-color-2" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar bg-flat-color-2" role="progressbar"
+                                                 style="width: {{ $data['kpkper'] ?? 0 }}%;" aria-valuenow="{{ $data['kpkper'] ?? 0 }}"
+                                                 aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
                                     <div class="progress-box progress-3">
                                         <h4 class="por-title">Balochistan</h4>
-                                        <div class="por-txt" id="balper"></div>
+                                        <div class="por-txt" id="balper">{{ $data['balper'] ?? 0 }}%</div>
                                         <div class="progress mb-2" style="height: 5px;">
-                                            <div class="progress-bar bg-flat-color-3" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar bg-flat-color-3" role="progressbar"
+                                                 style="width: {{ $data['balper'] ?? 0 }}%;" aria-valuenow="{{ $data['balper'] ?? 0 }}"
+                                                 aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
                                     <div class="progress-box progress-4">
                                         <h4 class="por-title">Sindh</h4>
-                                        <div class="por-txt" id="sindhper"></div>
+                                        <div class="por-txt" id="sindhper">{{ $data['sindhper'] ?? 0 }}%</div>
                                         <div class="progress mb-2" style="height: 5px;">
-                                            <div class="progress-bar bg-flat-color-4" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar bg-flat-color-4" role="progressbar"
+                                                 style="width: {{ $data['sindhper'] ?? 0 }}%;" aria-valuenow="{{ $data['sindhper'] ?? 0 }}"
+                                                 aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
-                                    
-                                </div> <!-- /.col-lg-3 -->
+                                </div>
+                                
+                                <!-- /.col-lg-3 -->
                             </div> <!-- /.row -->
                         </div>
                     </div><!-- /.card -->
@@ -618,8 +618,6 @@
         </div>
         <!--  /Traffic -->
         <div class="clearfix"></div>
-
-
         <!-- Modal - Calendar - Add New Event -->
         <div class="modal fade none-border" id="event-modal">
             <div class="modal-dialog">
@@ -683,7 +681,7 @@
     </div>
 @endsection
 @section('bot')
-    <script>
+    {{-- <script>
         fetch("/punjper")
             .then(response => {
                 if (!response.ok) {
@@ -692,7 +690,6 @@
                 return response.text();
             })
             .then(data => {
-                // Update the percentage in the HTML element
                 document.getElementById('punjper').textContent = data + '%';
             })
             .catch(error => {
@@ -706,7 +703,6 @@
                 return response.text();
             })
             .then(data => {
-                // Update the percentage in the HTML element
                 document.getElementById('kpkper').textContent = data + '%';
             })
             .catch(error => {
@@ -720,7 +716,6 @@
                 return response.text();
             })
             .then(data => {
-                // Update the percentage in the HTML element
                 document.getElementById('balper').textContent = data + '%';
             })
             .catch(error => {
@@ -734,17 +729,15 @@
                 return response.text();
             })
             .then(data => {
-                // Update the percentage in the HTML element
                 document.getElementById('sindhper').textContent = data + '%';
             })
             .catch(error => {
                 console.error('Error fetching percentage for Punjab region:', error.message);
             });
-    </script>
+    </script> --}}
 
 
     <script>
-        // Fetch total hand pump setups count using AJAX
         fetch("{{ route('head.handpump.setups') }}")
             .then(response => {
                 if (!response.ok) {
@@ -753,7 +746,6 @@
                 return response.text();
             })
             .then(data => {
-                // Update the total count in the HTML element
                 document.getElementById('head_count').textContent = data;
             })
             .catch(error => {
@@ -767,14 +759,12 @@
                 return response.text();
             })
             .then(data => {
-                // Update the total count in the HTML element
                 document.getElementById('head_new_well_count').textContent = data;
             })
             .catch(error => {
                 console.error('Error fetching total new well setups count:', error.message);
             });
 
-        // Fetch total repair well setups count using AJAX
         fetch("{{ route('head.repairwell.setups') }}")
             .then(response => {
                 if (!response.ok) {
@@ -783,7 +773,6 @@
                 return response.text();
             })
             .then(data => {
-                // Update the total count in the HTML element
                 document.getElementById('head_repair_well_count').textContent = data;
             })
             .catch(error => {
@@ -798,7 +787,6 @@
             })
             .then(data => {
 
-                // Calculate total count by summing up individual counts
                 const totalSum = data.headNewWellSetupsCount + data.headHandPumpSetupsCount + data
                     .headRepairWellSetupsCount;
                 document.getElementById('head_total_count').textContent = totalSum;
@@ -929,11 +917,6 @@
             });
         });
     </script>
-
-
-
-
-
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -1119,36 +1102,30 @@
         }
     </script>
 
-<script>
-    // Function to fetch percentage and update the corresponding progress bar
-function fetchPercentage(url, elementId, progressBarClass) {
-    fetch(url)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Failed to fetch percentage from ${url}`);
-            }
-            return response.text();
-        })
-        .then(data => {
-            // Update the percentage in the HTML element
-            const value = parseFloat(data); // Assuming the server returns a numeric value
-            document.getElementById(elementId).textContent = `${value}%`;
+    {{-- <script>
+        function fetchPercentage(url, elementId, progressBarClass) {
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Failed to fetch percentage from ${url}`);
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    const value = parseFloat(data);
+                    document.getElementById(elementId).textContent = `${value}%`;
 
-            // Update the progress bar width
-            document.querySelector(progressBarClass).style.width = `${value}%`;
-        })
-        .catch(error => {
-            console.error(`Error fetching percentage from ${url}:`, error.message);
-        });
-}
-
-// Fetching percentages for each region
-fetchPercentage("/punjper", 'punjper', '.progress-bar.bg-flat-color-1');
-fetchPercentage("/kpkper", 'kpkper', '.progress-bar.bg-flat-color-2');
-fetchPercentage("/balper", 'balper', '.progress-bar.bg-flat-color-3');
-fetchPercentage("/sindhper", 'sindhper', '.progress-bar.bg-flat-color-4');
-
-</script>
+                    document.querySelector(progressBarClass).style.width = `${value}%`;
+                })
+                .catch(error => {
+                    console.error(`Error fetching percentage from ${url}:`, error.message);
+                });
+        }
+        fetchPercentage("/punjper", 'punjper', '.progress-bar.bg-flat-color-1');
+        fetchPercentage("/kpkper", 'kpkper', '.progress-bar.bg-flat-color-2');
+        fetchPercentage("/balper", 'balper', '.progress-bar.bg-flat-color-3');
+        fetchPercentage("/sindhper", 'sindhper', '.progress-bar.bg-flat-color-4');
+    </script> --}}
 
 
 
@@ -1167,7 +1144,6 @@ fetchPercentage("/sindhper", 'sindhper', '.progress-bar.bg-flat-color-4');
                     return response.json();
                 })
                 .then(data => {
-                    // Update HTML elements with total counts by region
                     Object.entries(data).forEach(([region, counts]) => {
                         const handPumpElement = document.getElementById(`${region.toLowerCase()}HandPumpCount`);
                         const newWellElement = document.getElementById(`${region.toLowerCase()}NewWellCount`);
@@ -1186,7 +1162,7 @@ fetchPercentage("/sindhper", 'sindhper', '.progress-bar.bg-flat-color-4');
             // .catch(error => console.error('Error fetching total counts by region:', error.message));
         }
 
-        // Call the function to fetch total counts for each region
         fetchTotalCountsByRegion();
     </script>
+
 @endsection

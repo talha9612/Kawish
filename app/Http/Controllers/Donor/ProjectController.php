@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Donor;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+
 class ProjectController extends Controller
 {
     /**

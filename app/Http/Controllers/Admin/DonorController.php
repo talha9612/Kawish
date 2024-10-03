@@ -39,42 +39,34 @@ class DonorController extends Controller
      */
     public function store(Request $request)
     { 
-        $lastEightNumbers = substr($request->input('phone'), -9);
+        // $lastEightNumbers = substr($request->input('phone'), -9);
         if($request->selectUserType == "donor"){
-            $lastEightNumbers = substr($request->input('phone'), -9);
-            // Create a new donor instance
             $donor = new Donor();
             $donor->title = $request->input('selectUser');
             $donor->name = $request->input('name');
             $donor->f_h_name = $request->input('fatherHusbandName');
             $donor->email = $request->input('email');
-            $donor->password = Hash::make($lastEightNumbers);
+            $donor->password = Hash::make($request->input('password'));
             $donor->phone = $request->input('phone');
             $donor->city = $request->input('city');
             $donor->country = $request->input('country');
     
-            // Save the donor record
             $donor->save();
     
-            // Optionally, you can return a response or redirect the user
-            return response()->json(['message' => 'Donor created successfully'], 201);
+            return response()->json(['message' => 'A Donor has been created successfully'], 201);
         }else{
-            $lastEightNumbers = substr($request->input('phone'), -9);
-            // Create a new donor instance
             $user = new User();
           
             $user->name = $request->input('name');
             $user->f_h_name = $request->input('fatherHusbandName');
             $user->email = $request->input('email');
-            $user->password = Hash::make($lastEightNumbers);
+            $user->password = Hash::make($request->input('password'));
             $user->phone = $request->input('phone');
             $user->city = $request->input('city');
             $user->country = $request->input('country');
     
-            // Save the user record
             $user->save();
-             // Optionally, you can return a response or redirect the user
-             return response()->json(['message' => 'User created successfully'], 201);
+             return response()->json(['message' => 'A User has been created successfully'], 201);
         }
        
     }

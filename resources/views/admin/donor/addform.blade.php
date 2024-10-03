@@ -47,6 +47,10 @@
                     <label for="country" class=" form-control-label">Country</label>
                     <input type="text" name="country" id="country" placeholder="Country" class="form-control">
                 </div>
+                <div class="form-group">
+                    <label for="password" class=" form-control-label">Password</label>
+                    <input type="password" name="password" id="password" placeholder="Password" class="form-control">
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                     <button type="button" id="confirmButton" class="btn btn-primary" data-dismiss="modal">Confirm</button>

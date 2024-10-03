@@ -14,28 +14,9 @@ class ProjectController extends Controller
     public function index(){
         $donors = Donor::all();
         $projects = Project::all();
-        $regions = ['Punjab', 'Khyber-Pakhtunkhwa', 'Balochistan', 'Sindh'];
-        $data = [];
-
-        // Calculate total setups
-        $totalHandPumpSetupsCount = $this->getTotalHandPumpSetupsCount();
-        $totalNewWellSetupsCount = $this->getTotalNewWellSetupsCount();
-        $totalRepairWellSetupsCount = $this->getTotalRepairWellSetupsCount();
-        $totalSum = $totalHandPumpSetupsCount + $totalNewWellSetupsCount + $totalRepairWellSetupsCount;
-
-        // Calculate percentages for each region
-        foreach ($regions as $region) {
-            $handPumpCount = Project::where('region', $region)->where('setup', 'Hand Pump')->count();
-            $newWellCount = Project::where('region', $region)->where('setup', 'New Well')->count();
-            $repairWellCount = Project::where('region', $region)->where('setup', 'Repair Well')->count();
-
-            // Calculate percentage
-            $percentage = $totalSum > 0 ? ($handPumpCount + $newWellCount + $repairWellCount) / $totalSum * 100 : 0;
-            $data[strtolower($region) . 'per'] = round($percentage, 2); // Store with region name in lowercase
-             dd($data);
-        return view('admin.dashboard.index',compact('donors','projects', 'data'));
+        return view('admin.project.index',compact('donors','projects'));
     }
-}
+
     public function add($id){
         $survey = Surveyed::findOrFail($id);
         $donors = Donor::all();

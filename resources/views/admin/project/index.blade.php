@@ -16,9 +16,9 @@
             <div class="card">
                 <div class="card-header">
                     <strong class="card-title float-left">All Project</strong>
-                    {{-- <button type="button" class="btn btn-primary float-right color-white" data-toggle="modal" data-target="#mediumModal">
+                    <button type="button" class="btn btn-primary float-right color-white" data-toggle="modal" data-target="#mediumModal">
                         Add Project
-                    </button> --}}
+                    </button>
                 </div>
                 <div class="card-body">
                     <table id="bootstrap-data-table-export" class="table table-striped table-bordered">

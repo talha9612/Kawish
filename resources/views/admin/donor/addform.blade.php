@@ -25,7 +25,7 @@
                 </div>
                 <div class="form-group">
                     <label for="area" class=" form-control-label">Name</label>
-                    <input type="text" name="name" id="name" placeholder="Enter Area" class="form-control">
+                    <input type="text" name="name" id="name" placeholder="Enter Name" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="f_h_name" class=" form-control-label">Father/Husband Name</label>
@@ -49,7 +49,7 @@
                 </div>
                 <div class="form-group">
                     <label for="password" class=" form-control-label">Password</label>
-                    <input type="password" name="password" id="password" placeholder="Password" class="form-control">
+                    <input type="text" name="password" id="password" placeholder="Password" class="form-control">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

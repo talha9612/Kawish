@@ -41,6 +41,8 @@ class DonorController extends Controller
     { 
         // $lastEightNumbers = substr($request->input('phone'), -9);
         if($request->selectUserType == "donor"){
+            // $lastEightNumbers = substr($request->input('phone'), -9);
+            // Create a new donor instance
             $donor = new Donor();
             $donor->title = $request->input('selectUser');
             $donor->name = $request->input('name');
@@ -51,10 +53,14 @@ class DonorController extends Controller
             $donor->city = $request->input('city');
             $donor->country = $request->input('country');
     
+            // Save the donor record
             $donor->save();
     
-            return response()->json(['message' => 'A Donor has been created successfully'], 201);
+            // Optionally, you can return a response or redirect the user
+            return response()->json(['message' => 'Donor created successfully'], 201);
         }else{
+            // $lastEightNumbers = substr($request->input('phone'), -9);
+            // Create a new donor instance
             $user = new User();
           
             $user->name = $request->input('name');
@@ -65,8 +71,10 @@ class DonorController extends Controller
             $user->city = $request->input('city');
             $user->country = $request->input('country');
     
+            // Save the user record
             $user->save();
-             return response()->json(['message' => 'A User has been created successfully'], 201);
+             // Optionally, you can return a response or redirect the user
+             return response()->json(['message' => 'User created successfully'], 201);
         }
        
     }

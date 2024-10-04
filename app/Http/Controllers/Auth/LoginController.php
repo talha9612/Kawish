@@ -6,7 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use Auth;
+use App\Models\Donor;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
+
 
 class LoginController extends Controller
 {
@@ -49,17 +53,17 @@ class LoginController extends Controller
 
     public function adminLogin(Request $request)
     {
-        
+
         $this->validate($request, [
             'email'   => 'required|email',
             'password' => 'required|min:6'
         ]);
         // dd(Auth::guard('admin'));
         if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-           
+
             return redirect()->intended('/admin');
         }
-        
+
         return back()->withInput($request->only('email', 'remember'));
     }
     // For Donor
@@ -75,10 +79,14 @@ class LoginController extends Controller
             'password' => 'required|min:6'
         ]);
 
-        if (Auth::guard('donor')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-
+        $donor = Donor::where('email', $request->email)->first();
+        if ($donor && Hash::check($request->password, $donor->password)) {
+            // Password is correct, log the donor in
+            Auth::guard('donor')->login($donor);
             return redirect()->intended('/donor');
+        } else {
+            // Invalid password
+            return back()->withErrors(['email' => 'Invalid credentials']);
         }
-        return back()->withInput($request->only('email', 'remember'));
     }
 }

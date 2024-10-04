@@ -169,7 +169,7 @@
             var phone = $('#phone').val();
             var city = $('#city').val();
             var country = $('#country').val();
-
+            var password = $('#password').val();
             // Send AJAX request
             $.ajax({
                 url: '{{ route("donors.store") }}',
@@ -183,6 +183,7 @@
                     phone: phone,
                     city: city,
                     country: country,
+                    password: password,
                     _token: '{{ csrf_token() }}'
                 },
                 success: function(response) {

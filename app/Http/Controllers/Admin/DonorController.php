@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Donor;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 class DonorController extends Controller
 {
     /**
@@ -39,16 +40,16 @@ class DonorController extends Controller
      */
     public function store(Request $request)
     { 
-        // $lastEightNumbers = substr($request->input('phone'), -9);
+        $pass=$request->input('password');
         if($request->selectUserType == "donor"){
-            // $lastEightNumbers = substr($request->input('phone'), -9);
             // Create a new donor instance
+            
             $donor = new Donor();
             $donor->title = $request->input('selectUser');
             $donor->name = $request->input('name');
             $donor->f_h_name = $request->input('fatherHusbandName');
             $donor->email = $request->input('email');
-            $donor->password = Hash::make($request->input('password'));
+            $donor->password = Hash::make($pass);
             $donor->phone = $request->input('phone');
             $donor->city = $request->input('city');
             $donor->country = $request->input('country');
@@ -66,7 +67,7 @@ class DonorController extends Controller
             $user->name = $request->input('name');
             $user->f_h_name = $request->input('fatherHusbandName');
             $user->email = $request->input('email');
-            $user->password = Hash::make($request->input('password'));
+            $user->password = Hash::make($pass);
             $user->phone = $request->input('phone');
             $user->city = $request->input('city');
             $user->country = $request->input('country');
@@ -78,7 +79,50 @@ class DonorController extends Controller
         }
        
     }
+    // public function store(Request $request)
+    // {
+    //     Log::info($request->all());
 
+    //     if ($request->selectUserType == "donor") {
+    //         // Create a new donor instance
+    //         $donor = new Donor();
+    //         $donor->title = $request->input('selectUser');
+    //         $donor->name = $request->input('name');
+    //         $donor->f_h_name = $request->input('fatherHusbandName');
+    //         $donor->email = $request->input('email');
+    
+    //         // Save the password in plain text
+    //         $donor->password = $request->input('password');
+    
+    //         $donor->phone = $request->input('phone');
+    //         $donor->city = $request->input('city');
+    //         $donor->country = $request->input('country');
+    
+    //         // Save the donor record
+    //         $donor->save();
+    
+    //         return response()->json(['message' => 'Donor created successfully'], 201);
+    //     } else {
+    //         // Create a new user instance
+    //         $user = new User();
+    //         $user->name = $request->input('name');
+    //         $user->f_h_name = $request->input('fatherHusbandName');
+    //         $user->email = $request->input('email');
+    
+    //         // Save the password in plain text
+    //         $user->password = $request->input('password');
+    
+    //         $user->phone = $request->input('phone');
+    //         $user->city = $request->input('city');
+    //         $user->country = $request->input('country');
+    
+    //         // Save the user record
+    //         $user->save();
+    //         return response()->json(['message' => 'User created successfully'], 201);
+    //     }
+    // }
+    
+    
     /**
      * Display the specified resource.
      *
